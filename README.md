@@ -11,7 +11,7 @@ $client     = new MongoLite\Client(PATH_TO_WRITABLE_FOLDER);
 $database   = $client->testdb;
 $collection = $database->products;
 
-$entry = ["name"=>"Super cool Product", "price"=>20];
+$entry = array("name"=>"Super cool Product", "price"=>20);
 
 $collection->insert($entry);
 
@@ -36,12 +36,12 @@ $collection->find(function($document) {   // recommended to query data
 
 //or
 
-$collection->find(["price"=>['$gt'=>10]]); // only very simple criteria is supported (can be slow)
+$collection->find(array("price"=>array('$gt'=>10))); // only very simple criteria is supported (can be slow)
 
 //or just one
 
 $collection->findOne(function($document) { ... });
-$collection->findOne([...]);
+$collection->findOne(array(...));
 ```
 
 ###Writing documents
