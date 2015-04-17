@@ -163,6 +163,7 @@ class Collection {
      * Find documents
      *
      * @param  mixed $criteria
+     * @param null $projection
      * @return object Cursor
      */
     public function find($criteria = null, $projection = null) {
@@ -173,6 +174,7 @@ class Collection {
      * Find one document
      *
      * @param  mixed $criteria
+     * @param null $projection
      * @return array
      */
     public function findOne($criteria = null, $projection = null) {

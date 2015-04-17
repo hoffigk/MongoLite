@@ -2,6 +2,8 @@
 
 namespace MongoLite;
 
+use PDO;
+
 /**
  * Database object.
  */

@@ -9,8 +9,8 @@ class CollectionCRUDTest extends PHPUnit_Framework_TestCase {
         $database->createCollection("testdb");
         $collection = $database->selectCollection("testdb");
         
-        $entry1 = ["name" => "Super cool Product", "price" => 20, "in_stock" => true];
-        $entry2 = ["name" => "Another cool Product", "price" => 15, "in_stock" => false];
+        $entry1 = array("name" => "Super cool Product", "price" => 20, "in_stock" => true);
+        $entry2 =  array("name" => "Another cool Product", "price" => 15, "in_stock" => false);
         $collection->insert($entry1);
         $collection->insert($entry2);
         
@@ -18,7 +18,7 @@ class CollectionCRUDTest extends PHPUnit_Framework_TestCase {
     }
     
     public function testCreateEntry() {
-        $entry = ["name" => "Awesome Product", "price" => 100, "in_stock" => false];
+        $entry =  array("name" => "Awesome Product", "price" => 100, "in_stock" => false);
         
         $this->assertEquals(2, self::$collection->find()->count());
         
@@ -48,23 +48,23 @@ class CollectionCRUDTest extends PHPUnit_Framework_TestCase {
     }
     
     public function testUpdateEntry() {
-        $entry = self::$collection->findOne(["name" => "Awesome Product"]);
+        $entry = self::$collection->findOne(array("name" => "Awesome Product"));
         
         $this->assertEquals(100, $entry["price"]);
         
         $entry["price"] = 50;
         self::$collection->save($entry);
-        $entry = self::$collection->findOne(["name" => "Awesome Product"]);
+        $entry = self::$collection->findOne(array("name" => "Awesome Product"));
         
         $this->assertEquals(50, $entry["price"]);
     }
     
     public function testDeleteEntry() {
-        $entry = self::$collection->findOne(["name" => "Awesome Product"]);
+        $entry = self::$collection->findOne(array("name" => "Awesome Product"));
        
         $this->assertEquals(3, self::$collection->find()->count());
        
-        self::$collection->remove(["_id" => $entry["_id"]]);
+        self::$collection->remove(array("_id" => $entry["_id"]));
        
         $this->assertEquals(2, self::$collection->find()->count());
        
